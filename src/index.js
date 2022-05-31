@@ -56,9 +56,9 @@ app.post('/login', (req, res) => {
   })
   })
 
-  const POST = process.env.PORT || 3000;
+  const PORT = process.env.PORT || 3000;
 
 
-app.listen(POST, () => {
+app.listen(PORT, () => {
   console.log(`Example app listening on port ${port}`)
 })
