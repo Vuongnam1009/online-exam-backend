@@ -1,4 +1,4 @@
-const port = 3000
+const port = 'https://online-exam-apiv1.herokuapp.com/'|| 3000
 const express = require('express')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
@@ -56,8 +56,9 @@ app.post('/login', (req, res) => {
   })
   })
 
+  const POST = process.env.PORT || 3000;
 
 
-app.listen(port, () => {
+app.listen(POST, () => {
   console.log(`Example app listening on port ${port}`)
 })
