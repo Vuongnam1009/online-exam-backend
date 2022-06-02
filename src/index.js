@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const app = express()
@@ -10,50 +11,22 @@ const accountRouter = require('./routers/account')
 app.use(morgan('combined'))
 app.use(bodyParser.urlencoded({ extended: false }))
 
+// app.engine('handlebars', xpshbs());
+// app.set('view engine', 'handlebars');
+// // app.set('views', path.join(__dirname, 'resources/views'));
+
+
 
 app.use(bodyParser.json())
 app.use('/api/account/',accountRouter)
 
+app.use('/public',express.static(path.join(__dirname, 'public')))
+
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  var linkToFile =path.join(__dirname, 'public/index.html')
+  console.log(linkToFile);
+  res.sendFile(linkToFile)
 })
-app.post('/register', (req, res) => {
-var username = req.body.username
-var password = req.body.password
-AccountModel.findOne({ username: username})
-.then(data => {
-  if(data){
- res.send('Tài khoàn đã tồn tại')}else{
-   return AccountModel.create({
-    username:username,
-    password: password,
-  })
- }
-})
-.then(data => {
-  res.send('Tạo tài khoản thành công')
-})
-.catch((err) => {
-  console.log('err',err);
-})
-})
-app.post('/login', (req, res) => {
-  var username = req.body.username
-  var password = req.body.password
-  AccountModel.findOne({ username: username,password: password})
-  .then(data => {
-    if(!data){
-   res.send('Tài khoàn hoặc mật khẩu không chính xác')}else{
-     return true
-   }
-  })
-  .then(data => {
-    res.send('Đăng nhập thành công')
-  })
-  .catch((err) => {
-    console.log('err',err);
-  })
-  })
 const PORT = process.env.PORT ||3000
 
 app.listen(PORT, () => {

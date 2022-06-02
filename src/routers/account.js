@@ -1,16 +1,31 @@
 const express = require('express');
 const router= express.Router();
 const AccountModel = require('../models/accounts')
-
+ const PAGE_SIZE = 2
 
 router.get('/', (req, res)=>{
-    AccountModel.find({})
-    .then(data=>{
-        res.json(data);
-    })
-    .catch(err=>{
-        res.status(500).json('Lỗi sever')
-    })
+    var page = req.query.page
+    if(page){
+        page = parseInt(page)
+        var skip = (page - 1)* PAGE_SIZE
+        AccountModel.find({})
+        .skip(skip)
+        .limit(PAGE_SIZE)
+        .then(data=>{
+            res.json(data);
+        })
+        .catch(err=>{
+            res.status(500).json('Lỗi sever')
+        })
+    }else{
+        AccountModel.find({})
+        .then(data=>{
+            res.json(data);
+        })
+        .catch(err=>{
+            res.status(500).json('Lỗi sever')
+        })
+    }
 
 })
 router.post('/', (req, res)=>{

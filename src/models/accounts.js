@@ -15,5 +15,5 @@ const account = new Schema({
     collection:'Account'
 });
 
-const AccountModel = mongoose.model('ModelName',account);
+const AccountModel = mongoose.model('account',account);
 module.exports = AccountModel
