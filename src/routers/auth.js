@@ -1,5 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const {registerValidate} = require("../validations/auth")
+const asyncMiddleware = require("../middlewares/async")
+const authController = require('../controllers/auth')
 const AccountModel = require("../models/user");
 var jwt = require("jsonwebtoken");
 const { JWT_SECRET_KEY, JWT_EXPIRES_TIME } = require("../configs/index");
@@ -28,25 +31,14 @@ router.get("/", (req, res) => {
       });
   }
 });
-router.post("/register", (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
-  AccountModel.create({
-    username: username,
-    password: password,
-  })
-    .then((data) => {
-      res.json("Tạo tài khoản thành công");
-    })
-    .catch((err) => {
-      res.status(500).json("Lỗi", err);
-    });
-});
+router.post("/register",
+registerValidate,
+asyncMiddleware(authController.register)
+);
 router.post("/login", (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
+  const{email, password} = req.body;
   AccountModel.findOne({
-    username: username,
+    email: email,
     password: password,
   })
     .then((data) => {
