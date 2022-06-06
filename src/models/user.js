@@ -6,11 +6,10 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
 const userSchema = new Schema({
-  username: String,
-  password: String,
   email: String,
-  roles: String,
   name: String,
+  password: String,
+  roles: String,
   avatar: String,
   dob: Date,
   phoneNumber: String,
