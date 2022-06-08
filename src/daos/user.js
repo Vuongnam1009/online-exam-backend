@@ -1,7 +1,7 @@
 const userModel = require('../models/user')
 const {
     Types: { ObjectId },
-  } = require('mongoose');
+  } = require('mongoose')
 
 const findUser = async (condition)=> {
     if(ObjectId.isValid(condition)){
@@ -12,7 +12,7 @@ const findUser = async (condition)=> {
         const user = await userModel.findOne(condition)
         return user
     }
-    return null;
+    return null
 }
 
 const createUser = async ({email,name, password}) => {
@@ -20,5 +20,10 @@ const createUser = async ({email,name, password}) => {
 return user
 }
 
+const updateUser = async (userId, data) => {
+    const user = await userModel.findByIdAndUpdate(userId, data, { new: true });
+    return user;
+  }
 
-module.exports ={findUser, createUser}
+
+module.exports ={findUser, createUser, updateUser}
