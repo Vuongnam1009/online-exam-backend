@@ -17,8 +17,10 @@ const userSchema = new Schema({
   urlYoutube: String,
   urlWebsite: String,
 },{
+  timestamps: true,
+    versionKey: false,
     collection:'user'
 });
 
-const AccountModel = mongoose.model('user',userSchema);
+const AccountModel = mongoose.model('User',userSchema);
 module.exports = AccountModel
