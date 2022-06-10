@@ -42,9 +42,10 @@ router.post(
   loginValidate,
   asyncMiddleware(authController.login)
   );
-router.get("/auth/verify",
-auth,
-asyncMiddleware(authController.verifyAccessToken)
+
+router.get(
+  "/auth/verify",
+  asyncMiddleware(authController.verifyAccessToken)
 );
 
 module.exports = router;

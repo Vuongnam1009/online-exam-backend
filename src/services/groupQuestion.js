@@ -14,7 +14,6 @@ const findAllGroupQuestionByUser = async ({ userId, key }) => {
 };
 
 const findGroupQuestionById = async (id) => {
-  console.log('hihih',id);
   const groupQuestion = await groupQuestionDao.findGroupQuestion(
     { _id: id },
     null,

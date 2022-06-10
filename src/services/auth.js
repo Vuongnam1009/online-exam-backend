@@ -29,27 +29,28 @@ const login = async (email, password) => {
     throw new CustomError(code.WRONG_PASSWORD);
   }
   const roleId = user.role;
-  const role = await roleDao.findRole({ _id: roleId })
+  const role = await roleDao.findRole({ _id: roleId },['name'],
+    {
+      path:'permissions',
+    select:'name uri method _id'})
   if(!role){
-    throw new CustomError(code.USER_NOT_FOUND)
+    throw new CustomError(code.NOT_ROLE)
   }
 
-  const permissions= role.permissions
   const userId = user._id;
   const accessToken = await generateAccessToken({userId,roleId});
-  return { accessToken, user, permissions };
+  return { accessToken, user, role };
 };
 
-const verifyAccessToken = async (accessToken) => {
+const verifyAccessToken = async (accessToken,isVerify) => {
   const data = await compareAccessToken(accessToken);
   const user = await userDao.findUser(data.userId);
   const role = await roleDao.findRole(
     {_id:data.roleId},
-    null,
-    {
+    ['name','permissions'],
+    !isVerify?{
       path:'permissions',
-    select:'uri method _id'})
-  const permissions =role.permissions
-  return {user,permissions} ;
+    select:'uri method _id'}:null)
+  return {user,role} ;
 };
 module.exports = { register, login, verifyAccessToken };
