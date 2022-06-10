@@ -4,27 +4,27 @@ const { auth } = require('../middlewares/auth');
 const groupQuestionController = require('../controllers/groupQuestion');
 
 router.get(
-  '/',
+  '/groupQuestions/',
   auth,
   asyncMiddleware(groupQuestionController.getAllGroupQuestionByUser),
 );
 router.get(
-  '/:id',
+  '/groupQuestions/:id',
   auth,
   asyncMiddleware(groupQuestionController.getGroupQuestion),
 );
 router.post(
-  '/',
+  '/groupQuestions/',
   auth,
   asyncMiddleware(groupQuestionController.createGroupQuestion),
 );
 router.put(
-  '/:id',
+  '/groupQuestions/:id',
   auth,
   asyncMiddleware(groupQuestionController.updateGroupQuestion),
 );
 router.delete(
-  '/:id',
+  '/groupQuestions/:id',
   auth,
   asyncMiddleware(groupQuestionController.deleteGroupQuestion),
 );

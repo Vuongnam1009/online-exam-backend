@@ -5,7 +5,7 @@ const asyncMiddleware = require("../middlewares/async");
 const authController = require("../controllers/auth");
 const {auth} = require("../middlewares/auth")
 const AccountModel = require("../models/user");
-router.get("/", (req, res) => {
+router.get("/auth/", (req, res) => {
   const PAGE_SIZE = 2;
   var page = req.query.page;
   if (page) {
@@ -32,17 +32,17 @@ router.get("/", (req, res) => {
 });
 
 router.post(
-  "/register",
+  "/auth/register",
   registerValidate,
   asyncMiddleware(authController.register)
 );
 
 router.post(
-  "/login",
+  "/auth/login",
   loginValidate,
   asyncMiddleware(authController.login)
   );
-router.get("/verify",
+router.get("/auth/verify",
 auth,
 asyncMiddleware(authController.verifyAccessToken)
 );

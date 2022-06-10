@@ -11,4 +11,5 @@ module.exports = {
   EMAIL_EXIST: 1003,
   ITEM_EXIST: 1004,
   CONTEST_IS_PRIVATE: 1005,
+  NOT_ROLE: 1006,
 };

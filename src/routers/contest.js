@@ -5,65 +5,65 @@ const omitReq = require('../middlewares/omitReq');
 const contestController = require('../controllers/contest');
 const { checkPassword } = require('../middlewares/contest');
 
-router.get('/', asyncMiddleware(contestController.getAllContest));
+router.get('/contests/',auth, asyncMiddleware(contestController.getAllContest));
 router.get(
-  '/:contestId/role/:userId',
+  '/contests/:contestId/role/:userId',
   asyncMiddleware(contestController.checkAccountRole),
 );
 router.get(
-  '/joined',
+  '/contests/joined',
   auth,
   asyncMiddleware(contestController.getAllContestJoined),
 );
 router.get(
-  '/createByUser',
+  '/contests/createByUser',
   auth,
   asyncMiddleware(contestController.getAllContestByUser),
 );
 router.get(
-  '/:id',
+  '/contests/:id',
   auth,
   asyncMiddleware(contestController.getContest),
 );
 router.post(
-  '/',
+  '/contests/',
   auth,
   asyncMiddleware(contestController.createContest),
 );
 router.put(
-  '/:id',
+  '/contests/:id',
   auth,
   omitReq,
   asyncMiddleware(contestController.updateContest),
 );
 router.delete(
-  '/:id',
+  '/contests/:id',
   auth,
   asyncMiddleware(contestController.deleteContest),
 );
 router.post(
-  '/:id/verifyPassword',
+  '/contests/:id/verifyPassword',
   auth,
   asyncMiddleware(contestController.verifyPassword),
 );
 router.get(
-  '/:id/getAllQuestion',
+  '/contests/:id/getAllQuestion',
   auth,
   checkPassword,
   asyncMiddleware(contestController.getAllQuestion),
 );
 router.post(
-  '/:id/mark',
+  '/contests/:id/mark',
   auth,
   asyncMiddleware(contestController.mark),
 );
 router.get(
-  '/:id/results',
+  '/contests/:id/results',
   auth,
   asyncMiddleware(contestController.getAllResultByContest),
 );
 router.get(
-  '/:id/results/user',
+  '/contests/:id/results/user',
   auth,
   asyncMiddleware(contestController.getAllResultByUserInContest),
 );

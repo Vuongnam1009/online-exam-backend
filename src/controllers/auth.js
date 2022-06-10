@@ -8,8 +8,8 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   const { email, password } = req.body;
-  const { accessToken, user } = await authService.login(email, password);
-  return res.send({ status: 1, result: { accessToken, user } });
+  const { accessToken, user,permissions } = await authService.login(email, password);
+  return res.send({ status: 1, result: { accessToken, user, permissions } });
 }
 
 const verifyAccessToken = async (req, res) => {

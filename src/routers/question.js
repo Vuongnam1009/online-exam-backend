@@ -10,23 +10,23 @@ router.post(
   asyncMiddleware(questionController.getAllQuestionByGroupQuestion),
 );
 router.get(
-  '/:id',
+  '/questions/:id',
   auth,
   asyncMiddleware(questionController.getQuestion),
 );
 router.post(
-  '/',
+  '/questions/',
   auth,
   asyncMiddleware(questionController.createQuestion),
 );
 router.put(
-  '/:id',
+  '/questions/:id',
   auth,
   omitReq,
   asyncMiddleware(questionController.updateQuestion),
 );
 router.delete(
-  '/:id',
+  '/questions/:id',
   auth,
   asyncMiddleware(questionController.deleteQuestion),
 );

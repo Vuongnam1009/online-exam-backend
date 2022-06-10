@@ -18,6 +18,8 @@ const getErrorMessage = (code) => {
       return 'Item is exist';
     case codes.CONTEST_IS_PRIVATE:
       return 'Contest is private';
+      case codes.NOT_ROLE:
+      return 'not role'
     default:
       return null;
   }

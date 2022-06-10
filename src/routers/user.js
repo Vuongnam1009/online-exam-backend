@@ -3,9 +3,9 @@ const asyncMiddleware = require('../middlewares/async');
 const { auth } = require('../middlewares/auth');
 const userController = require('../controllers/user');
 
-router.put('/', auth, asyncMiddleware(userController.updateUser));
+router.put('users/', auth, asyncMiddleware(userController.updateUser));
 router.put(
-  '/changePassword',
+  'users/changePassword',
   auth,
   asyncMiddleware(userController.changePassword),
 );
