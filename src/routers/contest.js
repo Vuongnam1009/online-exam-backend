@@ -8,6 +8,7 @@ const { checkPassword } = require('../middlewares/contest');
 router.get('/contests/',auth, asyncMiddleware(contestController.getAllContest));
 router.get(
   '/contests/:contestId/role/:userId',
+  auth,
   asyncMiddleware(contestController.checkAccountRole),
 );
 router.get(
