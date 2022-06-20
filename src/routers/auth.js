@@ -3,8 +3,7 @@ const router = express.Router();
 const { registerValidate, loginValidate } = require("../validations/auth");
 const asyncMiddleware = require("../middlewares/async");
 const authController = require("../controllers/auth");
-const {auth} = require("../middlewares/auth")
-const AccountModel = require("../models/user");
+const { auth } = require("../middlewares/auth");
 
 router.post(
   "/auth/register",
@@ -16,11 +15,8 @@ router.post(
   "/auth/login",
   loginValidate,
   asyncMiddleware(authController.login)
-  );
-
-router.get(
-  "/auth/verify",
-  asyncMiddleware(authController.verifyAccessToken)
 );
+
+router.get("/auth/verify", asyncMiddleware(authController.verifyAccessToken));
 
 module.exports = router;

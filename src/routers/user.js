@@ -1,13 +1,13 @@
-const router = require('express').Router();
-const asyncMiddleware = require('../middlewares/async');
-const { auth } = require('../middlewares/auth');
-const userController = require('../controllers/user');
+const router = require("express").Router();
+const asyncMiddleware = require("../middlewares/async");
+const { auth } = require("../middlewares/auth");
+const userController = require("../controllers/user");
 
-router.put('users/', auth, asyncMiddleware(userController.updateUser));
+router.put("users/", auth, asyncMiddleware(userController.updateUser));
 router.put(
-  'users/changePassword',
+  "users/changePassword",
   auth,
-  asyncMiddleware(userController.changePassword),
+  asyncMiddleware(userController.changePassword)
 );
 
 module.exports = router;

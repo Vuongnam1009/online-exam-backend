@@ -1,34 +1,34 @@
-const router = require('express').Router();
-const asyncMiddleware = require('../middlewares/async');
-const { auth } = require('../middlewares/auth');
-const omitReq = require('../middlewares/omitReq');
-const questionController = require('../controllers/question');
+const router = require("express").Router();
+const asyncMiddleware = require("../middlewares/async");
+const { auth } = require("../middlewares/auth");
+const omitReq = require("../middlewares/omitReq");
+const questionController = require("../controllers/question");
 
 router.post(
-  '/questionsInGroup',
+  "/questionsInGroup",
   auth,
-  asyncMiddleware(questionController.getAllQuestionByGroupQuestion),
+  asyncMiddleware(questionController.getAllQuestionByGroupQuestion)
 );
 router.get(
-  '/questions/:id',
+  "/questions/:id",
   auth,
-  asyncMiddleware(questionController.getQuestion),
+  asyncMiddleware(questionController.getQuestion)
 );
 router.post(
-  '/questions/',
+  "/questions",
   auth,
-  asyncMiddleware(questionController.createQuestion),
+  asyncMiddleware(questionController.createQuestion)
 );
 router.put(
-  '/questions/:id',
+  "/questions/:id",
   auth,
   omitReq,
-  asyncMiddleware(questionController.updateQuestion),
+  asyncMiddleware(questionController.updateQuestion)
 );
 router.delete(
-  '/questions/:id',
+  "/questions/:id",
   auth,
-  asyncMiddleware(questionController.deleteQuestion),
+  asyncMiddleware(questionController.deleteQuestion)
 );
 
 module.exports = router;

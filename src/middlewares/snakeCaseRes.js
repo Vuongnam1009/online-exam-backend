@@ -1,5 +1,5 @@
-const mung = require('express-mung');
-const snakecaseKeys = require('snakecase-keys');
+const mung = require("express-mung");
+const snakecaseKeys = require("snakecase-keys");
 
 const sortObject = (obj) => {
   return Object.keys(obj)
@@ -11,7 +11,7 @@ const sortObject = (obj) => {
 };
 
 const transformObjectId = (obj) => {
-  if (typeof obj !== 'object') {
+  if (typeof obj !== "object") {
     return obj;
   }
 
@@ -26,7 +26,7 @@ const transformObjectId = (obj) => {
   }
 
   // Check if obj is ObjectId
-  if (obj._bsontype === 'ObjectID') {
+  if (obj._bsontype === "ObjectID") {
     return obj.toString();
   }
 
@@ -36,7 +36,7 @@ const transformObjectId = (obj) => {
   });
 
   if (Array.isArray(obj)) return obj;
-  if (Object.prototype.toString.call(obj) === '[object Date]') return obj;
+  if (Object.prototype.toString.call(obj) === "[object Date]") return obj;
 
   return sortObject(obj);
 };

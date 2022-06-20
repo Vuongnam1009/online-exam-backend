@@ -2,7 +2,7 @@ const CustomError = require('../errors/CustomError');
 const errorCodes = require('../errors/code');
 
 const groupQuestionDao = require('../daos/groupQuestion');
-const findAllGroupQuestion = async ({ userId, key }) => {
+const findAllGroupQuestion = async ({ key }) => {
   const { data, metadata } = await groupQuestionDao.findAllGroupQuestionByUser({
     key,
     searchFields: ['title'],

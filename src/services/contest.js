@@ -1,19 +1,19 @@
-const CustomError = require('../errors/CustomError');
-const errorCodes = require('../errors/code');
+const CustomError = require("../errors/CustomError");
+const errorCodes = require("../errors/code");
 
-const contestDao = require('../daos/contest');
-const resultDao = require('../daos/result');
-const questionDao = require('../daos/question');
-const { checkDate } = require('../utils/date');
-const constants = require('../constants');
-const { generateAccessToken } = require('../utils/auth');
+const contestDao = require("../daos/contest");
+const resultDao = require("../daos/result");
+const questionDao = require("../daos/question");
+const { checkDate } = require("../utils/date");
+const constants = require("../constants");
+const { generateAccessToken } = require("../utils/auth");
 
 const findAllContest = async ({ sort, fields }) => {
   const { data, metadata } = await contestDao.findAllContest({
     fields,
     sort,
     query: { isActive: true },
-    populate: ['createdBy'],
+    populate: ["createdBy"],
     exclude: { password: 0 },
   });
   return { data, metadata };
@@ -27,8 +27,8 @@ const findAllContestJoined = async ({ userId, sort, fields }) => {
     sort,
     fields,
     populate: {
-      path: 'contest',
-      populate: { path: 'createdBy' },
+      path: "contest",
+      populate: { path: "createdBy" },
     },
   });
   const listContestId = {};
@@ -61,7 +61,7 @@ const checkPasswordInContest = async (id) => {
 
 const findContestById = async ({ id }) => {
   const contest = await contestDao.findContest({ _id: id }, null, [
-    'createdBy',
+    "createdBy",
   ]);
   if (!contest) {
     throw new CustomError(errorCodes.NOT_FOUND);
@@ -83,7 +83,7 @@ const findContestById = async ({ id }) => {
       query: {
         contest: contest._id,
       },
-      populate: ['participant'],
+      populate: ["participant"],
     });
     contest.results = results;
   }
@@ -155,7 +155,7 @@ const getAllQuestion = async (id) => {
         groupQuestion: contest.groupQuestion,
       },
       exclude: {
-        'answers.isCorrect': 0,
+        "answers.isCorrect": 0,
       },
     });
     listQuestion = [...data];

@@ -1,37 +1,32 @@
-const router = require('express').Router();
-const asyncMiddleware = require('../middlewares/async');
-const { auth } = require('../middlewares/auth');
-const { role } = require('../middlewares/role');
-const groupQuestionController = require('../controllers/groupQuestion');
+const router = require("express").Router();
+const asyncMiddleware = require("../middlewares/async");
+const { auth } = require("../middlewares/auth");
+const groupQuestionController = require("../controllers/groupQuestion");
 
 router.get(
-  '/groupQuestions',
+  "/groupQuestions",
   auth,
-  role,
-  asyncMiddleware(groupQuestionController.getAllGroupQuestionByUser),
+  asyncMiddleware(groupQuestionController.getAllGroupQuestionByUser)
 );
 router.get(
-  '/groupQuestions/:id',
+  "/groupQuestions/:id",
   auth,
-  role,
-  asyncMiddleware(groupQuestionController.getGroupQuestion),
+  asyncMiddleware(groupQuestionController.getGroupQuestion)
 );
 router.post(
-  '/groupQuestions',
+  "/groupQuestions",
   auth,
-  role,
-  asyncMiddleware(groupQuestionController.createGroupQuestion),
+  asyncMiddleware(groupQuestionController.createGroupQuestion)
 );
 router.put(
-  '/groupQuestions/:id',
+  "/groupQuestions/:id",
   auth,
-  asyncMiddleware(groupQuestionController.updateGroupQuestion),
+  asyncMiddleware(groupQuestionController.updateGroupQuestion)
 );
 router.delete(
-  '/groupQuestions/:id',
+  "/groupQuestions/:id",
   auth,
-  role,
-  asyncMiddleware(groupQuestionController.deleteGroupQuestion),
+  asyncMiddleware(groupQuestionController.deleteGroupQuestion)
 );
 
 module.exports = router;

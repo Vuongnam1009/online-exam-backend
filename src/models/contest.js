@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const { ObjectId } = mongoose.Types;
 
@@ -9,7 +9,7 @@ const contestSchema = new mongoose.Schema(
     imageUrl: String,
     createdBy: {
       type: ObjectId,
-      ref: 'User',
+      ref: "User",
     },
     startTime: Date,
     endTime: Date,
@@ -17,7 +17,7 @@ const contestSchema = new mongoose.Schema(
     amountQuestion: Number,
     groupQuestion: {
       type: ObjectId,
-      ref: 'Group Question',
+      ref: "Group Question",
     },
     isActive: Boolean,
     password: String,
@@ -25,7 +25,7 @@ const contestSchema = new mongoose.Schema(
   {
     timestamps: true,
     versionKey: false,
-  },
+  }
 );
 
-module.exports = mongoose.model('Contest', contestSchema);
+module.exports = mongoose.model("Contest", contestSchema);
