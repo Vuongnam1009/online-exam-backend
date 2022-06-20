@@ -16,14 +16,14 @@ comparePassword = async (passwordCompare, password) => {
   return await bcrypt.compareSync(passwordCompare, password);
 };
 
-generateAccessToken = async (userId) => {
-  const accessToken = await jwt.sign({ userId }, JWT_SECRET_KEY, {
+generateAccessToken = async ({userId,permissions}) => {
+  const accessToken = await jwt.sign({ userId, permissions }, JWT_SECRET_KEY, {
     expiresIn: JWT_EXPIRES_TIME,
   });
   return accessToken;
 };
 compareAccessToken = async (accessToken)=>{
-    const data = await jwt.verify(accessToken,JWT_SECRET_KEY)
+  const data = await jwt.verify(accessToken,JWT_SECRET_KEY)
     return data
 }
 

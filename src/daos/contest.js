@@ -1,5 +1,5 @@
-const Contest = require('../models/contest');
-const { findAll, findByCondition } = require('../utils/db');
+const Contest = require("../models/contest");
+const { findAll, findByCondition } = require("../utils/db");
 
 const findAllContest = async ({
   key,
@@ -61,17 +61,14 @@ const createContest = async ({
     isActive,
     password,
   });
-
   return contest;
 };
-
 const updateContest = async (id, data) => {
   const contest = await Contest.findByIdAndUpdate(id, data, {
     new: true,
   });
   return contest;
 };
-
 const deleteContest = async (id) => {
   await Contest.findByIdAndDelete(id);
 };

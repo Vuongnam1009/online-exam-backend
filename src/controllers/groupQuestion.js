@@ -1,5 +1,20 @@
 const groupQuestionService = require('../services/groupQuestion');
 
+
+const getAllGroupQuestion = async (req, res) => {
+ const {key} = req.query
+ const {
+  data,
+  metadata,
+} = await groupQuestionService.findAllGroupQuestion({key});
+return res.send({
+  status: 1,
+  result: {
+    data,
+    metadata,
+  },
+});
+}
 const getAllGroupQuestionByUser = async (req, res) => {
   const { key } = req.query;
   const { user } = req;

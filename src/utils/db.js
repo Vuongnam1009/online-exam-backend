@@ -56,7 +56,7 @@ const findAll = async ({
     )
     .select(
       fields
-        ? JSON.parse(`{${fields.map((element) => `"${element}":1`).join(',')}}`)
+        ? JSON.parse(`{${fields.map((element) => `${element}`).join(',')}}`)
         : {},
     )
     .lean();
@@ -77,7 +77,6 @@ const findByCondition = async (model, condition, fields, populate) => {
         : {},
     )
     .lean();
-    console.log('documen',document);
   return document;
 };
 

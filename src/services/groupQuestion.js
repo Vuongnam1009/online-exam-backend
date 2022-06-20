@@ -2,7 +2,15 @@ const CustomError = require('../errors/CustomError');
 const errorCodes = require('../errors/code');
 
 const groupQuestionDao = require('../daos/groupQuestion');
+const findAllGroupQuestion = async ({ key }) => {
+  const { data, metadata } = await groupQuestionDao.findAllGroupQuestionByUser({
+    key,
+    searchFields: ['title'],
+    query: { createdBy: userId },
+  });
 
+  return { data, metadata };
+};
 const findAllGroupQuestionByUser = async ({ userId, key }) => {
   const { data, metadata } = await groupQuestionDao.findAllGroupQuestionByUser({
     key,
@@ -14,7 +22,6 @@ const findAllGroupQuestionByUser = async ({ userId, key }) => {
 };
 
 const findGroupQuestionById = async (id) => {
-  console.log('hihih',id);
   const groupQuestion = await groupQuestionDao.findGroupQuestion(
     { _id: id },
     null,
@@ -70,6 +77,7 @@ const deleteGroupQuestion = async (id) => {
 };
 
 module.exports = {
+  findAllGroupQuestion,
   findAllGroupQuestionByUser,
   findGroupQuestionById,
   createGroupQuestion,
